@@ -5,7 +5,7 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 
 const Events = () => {
-  const { data, loading, error } = useFetch("http://localhost:3000/events");
+  const { data, loading, error } = useFetch("https://meetup-6pler0hid-gurnav-chaudharys-projects.vercel.app/events");
 
   const [search, setSearch] = useState("");
   const [eventType, setEventType] = useState("Both");
