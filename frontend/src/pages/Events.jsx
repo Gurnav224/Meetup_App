@@ -5,32 +5,35 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 
 const Events = () => {
-  const { data, loading, error } = useFetch("https://meetup-6pler0hid-gurnav-chaudharys-projects.vercel.app/events");
+  const { data, loading, error } = useFetch(
+    "https://meetup-app-puce.vercel.app/events",
+    []
+  );
 
   const [search, setSearch] = useState("");
   const [eventType, setEventType] = useState("Both");
 
-
   const events = data?.events;
 
- 
-  let filterByEventType = events?.filter((event) => eventType === "Both" || event.eventType === eventType)
+  let filterByEventType = events?.filter(
+    (event) => eventType === "Both" || event.eventType === eventType
+  );
 
+  console.log(filterByEventType);
 
-  console.log(filterByEventType)
+  let filterBySearch = search
+    ? events.filter(
+        (event) =>
+          event.title.toLowerCase().includes(search.toLowerCase()) ||
+          event.tags.some((tag) =>
+            tag.toLowerCase().includes(search.toLowerCase())
+          )
+      )
+    : events;
 
-
-  let filterBySearch = search ? events.filter((event) => 
-    event.title.toLowerCase().includes(search.toLowerCase())  || 
-
-  event.tags.some((tag) => tag.toLowerCase().includes(search.toLowerCase()))
-
-) : events
-
-    
-    let filterEvents = filterByEventType?.filter((event) => 
-      filterBySearch.includes(event)
-    )
+  let filterEvents = filterByEventType?.filter((event) =>
+    filterBySearch.includes(event)
+  );
 
   if (error) return <p>error: {error}</p>;
 
@@ -40,27 +43,34 @@ const Events = () => {
       <main className="container my-4">
         <h1 className="fw-bold display-5">Meetup Events</h1>
         <div className="my-4 row">
-        <div className="col-md-6">
-        <label className="form-label" htmlFor="searchInput">
-            Search Event
-          </label>
-          <input
-            placeholder="search by title or tags"
-            className="form-control"
-            id="searchInput"
-            type="text"
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </div>
-         <div className="col-md-6">
-          <label className="form-label" htmlFor="eventType">Select Event Type</label>
-          <select onChange={(e) => setEventType(e.target.value)} className="form-select" name="eventType" id="eventType">
-            <option defaultValue={""}>Choose event Type</option>
-            <option value="Online">Online</option>
-            <option value="Offline">Offline</option>
-            <option value="Both">Both</option>
-          </select>
-         </div>
+          <div className="col-md-6">
+            <label className="form-label" htmlFor="searchInput">
+              Search Event
+            </label>
+            <input
+              placeholder="search by title or tags"
+              className="form-control"
+              id="searchInput"
+              type="text"
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+          <div className="col-md-6">
+            <label className="form-label" htmlFor="eventType">
+              Filter By Event Type
+            </label>
+            <select
+              onChange={(e) => setEventType(e.target.value)}
+              className="form-select"
+              name="eventType"
+              id="eventType"
+            >
+              <option defaultValue={""}>Choose event Type</option>
+              <option value="Online">Online</option>
+              <option value="Offline">Offline</option>
+              <option value="Both">Both</option>
+            </select>
+          </div>
         </div>
 
         <div className="row">
@@ -100,6 +110,7 @@ const Events = () => {
                         <p className="card-text text-secondary-emphasis mt-auto">
                           {moment(event.startingTime).format("LLLL")}
                         </p>
+                        <p className="card-text fw-bold ">Tags: {event.tags.join(', ')}</p>
                       </div>
                     </div>
                   </Link>
