@@ -8,6 +8,12 @@
     },
     {
       "path": "./apps/frontend"
+    },
+    {
+      "path": "./apps/my-backend-e2e"
+    },
+    {
+      "path": "./apps/my-backend"
     }
   ]
 }

@@ -1,0 +1,81 @@
+{
+  "name": "@event-villa/my-backend",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "npx nx serve my-backend",
+    "build": "npx nx build my-backend",
+    "test": "npx nx test my-backend",
+    "lint": "npx nx lint my-backend",
+    "start:dev": "npx nx serve my-backend --configuration=development",
+    "start:prod": "npx nx serve my-backend --configuration=production",
+    "build:dev": "npx nx build my-backend --configuration=development",
+    "build:prod": "npx nx build my-backend --configuration=production"
+  },
+  "nx": {
+    "targets": {
+      "build": {
+        "executor": "@nx/esbuild:esbuild",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "defaultConfiguration": "production",
+        "options": {
+          "platform": "node",
+          "outputPath": "apps/my-backend/dist",
+          "format": [
+            "cjs"
+          ],
+          "bundle": false,
+          "main": "apps/my-backend/src/main.ts",
+          "tsConfig": "apps/my-backend/tsconfig.app.json",
+          "assets": [
+            "apps/my-backend/src/assets"
+          ],
+          "esbuildOptions": {
+            "sourcemap": true,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        },
+        "configurations": {
+          "development": {},
+          "production": {
+            "esbuildOptions": {
+              "sourcemap": false,
+              "outExtension": {
+                ".js": ".js"
+              }
+            }
+          }
+        }
+      },
+      "serve": {
+        "continuous": true,
+        "executor": "@nx/js:node",
+        "defaultConfiguration": "development",
+        "dependsOn": [
+          "build"
+        ],
+        "options": {
+          "buildTarget": "@event-villa/my-backend:build",
+          "runBuildTargetDependencies": false
+        },
+        "configurations": {
+          "development": {
+            "buildTarget": "@event-villa/my-backend:build:development"
+          },
+          "production": {
+            "buildTarget": "@event-villa/my-backend:build:production"
+          }
+        }
+      },
+      "test": {
+        "options": {
+          "passWithNoTests": true
+        }
+      }
+    }
+  }
+}

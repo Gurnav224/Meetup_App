@@ -1,0 +1,16 @@
+{
+  "name": "@event-villa/frontend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/frontend",
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/frontend",
+        "command": "react-router dev"
+      },
+      "configurations": {}
+    }
+  }
+}

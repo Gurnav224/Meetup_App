@@ -2,7 +2,12 @@
   "name": "@event-villa/frontend",
   "private": true,
   "type": "module",
-  "scripts": {},
+  "scripts": {
+    "start": "npx nx serve frontend",
+    "build": "npx nx build frontend",
+    "test": "npx nx test frontend",
+    "lint": "npx nx lint frontend"
+  },
   "sideEffects": false,
   "dependencies": {
     "@react-router/node": "^7.2.0",

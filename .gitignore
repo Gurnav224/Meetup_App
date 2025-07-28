@@ -1,21 +1,119 @@
 # See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
-# compiled output
-dist
-tmp
-out-tsc
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# dependencies
-node_modules
+# Compiled output
+dist/
+dist-ssr/
+build/
+tmp/
+out-tsc/
+out/
+
+# Build outputs
+apps/*/dist/
+apps/*/build/
+libs/*/dist/
+libs/*/build/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+test-output/
+junit.xml
+
+# nyc test coverage
+.nyc_output
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Parcel-bundler cache
+.cache
+.parcel-cache
+
+# Vite
+.vite
+vite.config.*.timestamp*
+vitest.config.*.timestamp*
+
+# React Router build
+build/
+
+# Next.js build output
+.next
+
+# Nuxt.js build / generate output
+.nuxt
+
+# Storybook build outputs
+.out
+.storybook-out
+storybook-static
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+
+# NX
+.nx/cache
+.nx/workspace-data
 
 # IDEs and editors
-/.idea
+.idea/
 .project
 .classpath
 .c9/
 *.launch
 .settings/
 *.sublime-workspace
+*.swp
+*.swo
+*~
 
 # IDE - VSCode
 .vscode/*
@@ -24,25 +122,43 @@ node_modules
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# misc
+# Logs
+logs/
+*.log
+
+# Temporary folders
+tmp/
+temp/
+*.tmp
+*.temp
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+$RECYCLE_BIN/
+
+# Misc
 /.sass-cache
 /connect.lock
-/coverage
 /libpeerconnection.log
-npm-debug.log
-yarn-error.log
 testem.log
 /typings
 
-# System Files
-.DS_Store
-Thumbs.db
-
-.nx/cache
-.nx/workspace-data
+# Cursor IDE specific
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md
 
-vite.config.*.timestamp*
-vitest.config.*.timestamp*
-test-output
+# Package manager lock files (uncomment if not using)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Local development files
+*.local
